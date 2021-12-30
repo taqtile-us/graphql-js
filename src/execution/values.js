@@ -126,6 +126,7 @@ function coerceVariableValues(
       value,
       varType,
       (path, invalidValue, error) => {
+        return;
         let prefix =
           `Variable "$${varName}" got invalid value ` + inspect(invalidValue);
         if (path.length > 0) {
@@ -223,10 +224,7 @@ export function getArgumentValues(
       // Note: ValuesOfCorrectTypeRule validation should catch this before
       // execution. This is a runtime check to ensure execution does not
       // continue with an invalid argument value.
-      throw new GraphQLError(
-        `Argument "${name}" has invalid value ${print(valueNode)}.`,
-        valueNode,
-      );
+      // throw new GraphQLError(`Argument "${name}" has invalid value ${print(valueNode)}.`, valueNode,);
     }
     coercedValues[name] = coercedValue;
   }
