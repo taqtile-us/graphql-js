@@ -125,7 +125,11 @@ function coerceInputValueImpl(inputValue, type, onError, path) {
     // to the original error.
 
     try {
-      parseResult = type.parseValue(inputValue);
+      if (type.toString() === 'String' && !isNaN(inputValue)) {
+        parseResult = String(inputValue);
+      } else {
+        parseResult = type.parseValue(inputValue);
+      }
     } catch (error) {
       if (error instanceof _GraphQLError.GraphQLError) {
         onError((0, _Path.pathToArray)(path), inputValue, error);
