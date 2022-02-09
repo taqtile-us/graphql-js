@@ -106,7 +106,8 @@ function coerceVariableValues(schema, varDefNodes, inputs, onError) {
       return "continue";
     }
 
-    coercedValues[varName] = (0, _coerceInputValue.coerceInputValue)(value, varType, function (path, invalidValue, error) {
+    coercedValues[varName] = value;
+    /* coercedValues[varName] = (0, _coerceInputValue.coerceInputValue)(value, varType, function (path, invalidValue, error) {
       return;
       var prefix = "Variable \"$".concat(varName, "\" got invalid value ") + (0, _inspect.default)(invalidValue);
 
@@ -115,7 +116,7 @@ function coerceVariableValues(schema, varDefNodes, inputs, onError) {
       }
 
       onError(new _GraphQLError.GraphQLError(prefix + '; ' + error.message, varDefNode, undefined, undefined, undefined, error.originalError));
-    });
+    }); */
   };
 
   for (var _i2 = 0; _i2 < varDefNodes.length; _i2++) {
